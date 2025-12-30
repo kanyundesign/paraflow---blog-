@@ -70,20 +70,35 @@ const BlogPost = () => {
 
       <article className="pb-20">
         <div className="mx-auto max-w-6xl px-6 pt-16">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[200px_1px_1fr] lg:gap-12">
-            {/* Left sidebar - Breadcrumb */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24">
-                <nav className="text-sm text-muted-foreground">
-                  <Link to="/blog" className="hover:text-foreground transition-colors">
+          <div className="flex gap-12">
+            {/* Vertical decorative line - left side */}
+            <div className="hidden lg:block relative w-px shrink-0">
+              <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-white/80 via-white/80 to-transparent" />
+            </div>
+
+            {/* Main content */}
+            <div className="flex-1 max-w-5xl">
+              {/* Category Tag & Breadcrumb - same row */}
+              <div className="mb-6 flex items-center justify-between">
+                {/* Left: Category Tag */}
+                {post.category && (
+                  <CategoryTag 
+                    category={post.category.slug} 
+                    label={post.category.label} 
+                  />
+                )}
+                
+                {/* Right: Breadcrumb */}
+                <nav className="text-xs">
+                  <Link to="/blog" className="text-muted-foreground/60 hover:text-foreground transition-colors">
                     Blog
                   </Link>
                   {post.category && (
                     <>
-                      <span className="mx-1.5">/</span>
+                      <span className="mx-1.5 text-muted-foreground/60">/</span>
                       <Link
                         to={`/blog/category/${post.category.slug}`}
-                        className="hover:text-foreground transition-colors"
+                        className="text-foreground font-medium hover:text-[#00C05C] transition-colors"
                       >
                         {post.category.label}
                       </Link>
@@ -91,42 +106,6 @@ const BlogPost = () => {
                   )}
                 </nav>
               </div>
-            </aside>
-
-            {/* Vertical decorative line */}
-            <div className="hidden lg:block -ml-[70px] relative">
-              <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-white/80 via-white/80 to-transparent" />
-            </div>
-
-            {/* Main content */}
-            <div className="max-w-4xl -ml-[50px]">
-              {/* Mobile breadcrumb */}
-              <nav className="mb-8 text-sm text-muted-foreground lg:hidden">
-                <Link to="/blog" className="hover:text-foreground transition-colors">
-                  Blog
-                </Link>
-                {post.category && (
-                  <>
-                    <span className="mx-1.5">/</span>
-                    <Link
-                      to={`/blog/category/${post.category.slug}`}
-                      className="hover:text-foreground transition-colors"
-                    >
-                      {post.category.label}
-                    </Link>
-                  </>
-                )}
-              </nav>
-
-              {/* Category Tag */}
-              {post.category && (
-                <div className="mb-6">
-                  <CategoryTag 
-                    category={post.category.slug} 
-                    label={post.category.label} 
-                  />
-                </div>
-              )}
 
               {/* Title */}
               <h1 className="font-display text-[2.5rem] font-medium leading-[1.1] tracking-tight text-foreground md:text-[3rem] lg:text-[3.5rem]">

@@ -175,6 +175,7 @@
 }
 
 /* 杂志风格首字放大效果 (Raised Cap) - 底部基线对齐 */
+/* 选择 prose 内第一个段落的首字母 */
 .prose > p:first-of-type::first-letter {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   font-size: 3.5rem;
