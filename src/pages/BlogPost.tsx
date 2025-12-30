@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import BlogLayout from "@/components/blog/BlogLayout";
-import { usePublishedPost } from "@/hooks/use-published-posts";
+import { usePublishedPost, usePublishedPosts } from "@/hooks/use-published-posts";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -26,7 +26,16 @@ const sanitizeContent = (content: string): string => {
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading } = usePublishedPost(slug);
+  const { data: allPosts } = usePublishedPosts();
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Find next post
+  const nextPost = React.useMemo(() => {
+    if (!allPosts || !slug) return null;
+    const currentIndex = allPosts.findIndex(p => p.slug === slug);
+    if (currentIndex === -1 || currentIndex >= allPosts.length - 1) return null;
+    return allPosts[currentIndex + 1];
+  }, [allPosts, slug]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,17 +140,17 @@ const BlogPost = () => {
 
               {/* Cover image */}
               {post.cover_image_url && (
-                <figure className="mt-10">
+                <figure className="mt-10 flex justify-center">
                   <img
                     src={post.cover_image_url}
                     alt={post.title}
-                    className="w-full rounded-xl object-cover"
+                    className="max-w-full rounded-xl object-cover"
                   />
                 </figure>
               )}
 
               {/* Content */}
-              <div className="mt-[30px] prose prose-base prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-muted-foreground prose-p:leading-[1.75] prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-[#00C05C]/30 prose-blockquote:py-5 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:text-foreground/90 prose-blockquote:rounded-r-lg [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-[#00C05C]/10 [&_blockquote]:to-[#79F200]/5 prose-code:rounded prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:text-primary prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-strong:text-foreground prose-strong:font-bold prose-em:not-italic prose-em:font-normal prose-em:text-muted-foreground prose-ul:text-muted-foreground prose-ul:my-4 prose-ol:text-muted-foreground prose-ol:my-4 prose-li:marker:text-primary/60 prose-li:my-1.5 prose-img:rounded-xl prose-img:my-8 [&_strong]:text-foreground [&_strong]:font-bold [&_em]:not-italic [&_em]:font-normal [&_em]:text-muted-foreground">
+              <div className="mt-[30px] prose prose-base prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-muted-foreground prose-p:leading-[1.75] prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-[#00C05C]/30 prose-blockquote:py-5 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:text-foreground/90 prose-blockquote:rounded-r-lg [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-[#00C05C]/10 [&_blockquote]:to-[#79F200]/5 prose-code:rounded prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:text-primary prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-strong:text-foreground prose-strong:font-bold prose-em:not-italic prose-em:font-normal prose-em:text-muted-foreground prose-ul:text-muted-foreground prose-ul:my-4 prose-ol:text-muted-foreground prose-ol:my-4 prose-li:marker:text-primary/60 prose-li:my-1.5 prose-img:rounded-xl prose-img:my-8 prose-img:mx-auto [&_strong]:text-foreground [&_strong]:font-bold [&_em]:not-italic [&_em]:font-normal [&_em]:text-muted-foreground">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
@@ -297,24 +306,28 @@ const BlogPost = () => {
                   </svg>
                   <span>Back to all posts</span>
                 </Link>
-                <Link
-                  to="/blog"
-                  className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-all duration-300 hover:text-[#00C05C]"
-                >
-                  <span>Next post</span>
-                  <svg 
-                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
+                {nextPost ? (
+                  <Link
+                    to={`/blog/${nextPost.slug}`}
+                    className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-all duration-300 hover:text-[#00C05C]"
                   >
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                    <span>Next post</span>
+                    <svg 
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M12 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <div />
+                )}
               </div>
 
               {/* Back to top - floating button */}
