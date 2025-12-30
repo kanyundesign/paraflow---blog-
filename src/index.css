@@ -1,0 +1,186 @@
+/* 字体导入 - 必须在 @tailwind 之前 */
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/500.css";
+@import "@fontsource/newsreader/600.css";
+@import "@fontsource/newsreader/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Paraflow Blog Design System - Based on DESIGN_SYSTEM.md */
+
+@layer base {
+  :root {
+    /* 主背景色 - #0A0A0A */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+
+    /* 卡片背景 - #1A1A1A */
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+
+    /* 弹出层 */
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* 主品牌色 - Paraflow Green #00C05C */
+    --primary: 152 100% 38%;
+    --primary-foreground: 0 0% 4%;
+
+    /* 次级区域 - #1A1A1A */
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 83%;
+
+    /* 弱化元素 - #2A2A2A */
+    --muted: 0 0% 17%;
+    --muted-foreground: 0 0% 53%;
+
+    /* 强调色 - 同主品牌色 */
+    --accent: 152 100% 38%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* 边框 - #2A2A2A */
+    --border: 0 0% 17%;
+    --input: 0 0% 17%;
+    --ring: 152 100% 38%;
+
+    --radius: 0.5rem;
+
+    /* Category colors */
+    --category-insight: 200 80% 55%;
+    --category-stories: 152 100% 38%;
+    --category-features: 280 70% 60%;
+    --category-engineering: 35 100% 55%;
+
+    /* Paraflow 品牌渐变 */
+    --paraflow-green: #00C05C;
+    --paraflow-green-light: #79F200;
+    --paraflow-gradient: linear-gradient(135deg, #00C05C 0%, #79F200 100%);
+    --paraflow-gradient-horizontal: linear-gradient(90deg, #00C05C 0%, #79F200 100%);
+
+    /* 光晕效果 */
+    --glow-green: 0 0 20px rgba(0, 192, 92, 0.3), 0 0 40px rgba(0, 192, 92, 0.2), 0 0 60px rgba(0, 192, 92, 0.1);
+
+    /* 侧边栏 */
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 53%;
+    --sidebar-primary: 152 100% 38%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 17%;
+    --sidebar-ring: 152 100% 38%;
+  }
+
+  .dark {
+    /* 主背景色 - #0A0A0A */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+
+    /* 卡片背景 - #1A1A1A */
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* 主品牌色 - Paraflow Green #00C05C */
+    --primary: 152 100% 38%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 83%;
+
+    --muted: 0 0% 17%;
+    --muted-foreground: 0 0% 53%;
+
+    --accent: 152 100% 38%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 17%;
+    --input: 0 0% 17%;
+    --ring: 152 100% 38%;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 53%;
+    --sidebar-primary: 152 100% 38%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 17%;
+    --sidebar-ring: 152 100% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* 品牌渐变文字 */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #00C05C 0%, #79F200 100%);
+  }
+  
+  /* 绿色光晕效果 */
+  .glow-green {
+    box-shadow: 
+      0 0 20px rgba(0, 192, 92, 0.3),
+      0 0 40px rgba(0, 192, 92, 0.2),
+      0 0 60px rgba(0, 192, 92, 0.1);
+  }
+
+  /* 渐变背景按钮 */
+  .bg-gradient-paraflow {
+    background: linear-gradient(135deg, #00C05C 0%, #79F200 100%);
+  }
+
+  /* 卡片悬停光晕 */
+  .hover-glow {
+    transition: box-shadow 0.5s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 60px rgba(0, 192, 92, 0.1);
+  }
+}
+
+/* 内文分隔线渐变样式 */
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+}
+
+/* 杂志风格首字放大效果 (Raised Cap) - 底部基线对齐 */
+.prose > p:first-of-type::first-letter {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-right: 0.25rem;
+  color: #fff;
+  vertical-align: baseline;
+}
