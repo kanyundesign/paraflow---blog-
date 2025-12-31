@@ -1,8 +1,6 @@
 /* 字体导入 - 必须在 @tailwind 之前 */
-@import "@fontsource/newsreader/400.css";
-@import "@fontsource/newsreader/500.css";
-@import "@fontsource/newsreader/600.css";
-@import "@fontsource/newsreader/700.css";
+@import "@fontsource/parkinsans/400.css";
+@import "@fontsource/parkinsans/500.css";
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
@@ -18,15 +16,16 @@
   :root {
     /* 主背景色 - #0A0A0A */
     --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
+    /* Apple 风格微冷色调白 - 减少纯白刺激感 */
+    --foreground: 220 8% 92%;
 
     /* 卡片背景 - #1A1A1A */
     --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 220 8% 92%;
 
     /* 弹出层 */
     --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 220 8% 92%;
 
     /* 主品牌色 - Paraflow Green #00C05C */
     --primary: 152 100% 38%;
@@ -83,14 +82,15 @@
   .dark {
     /* 主背景色 - #0A0A0A */
     --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
+    /* Apple 风格微冷色调白 - 减少纯白刺激感 */
+    --foreground: 220 8% 92%;
 
     /* 卡片背景 - #1A1A1A */
     --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 220 8% 92%;
 
     --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 220 8% 92%;
 
     /* 主品牌色 - Paraflow Green #00C05C */
     --primary: 152 100% 38%;
@@ -171,7 +171,7 @@
 .prose hr {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
 }
 
 /* 杂志风格首字放大效果 (Raised Cap) - 底部基线对齐 */
@@ -184,4 +184,18 @@
   margin-right: 0.25rem;
   color: #fff;
   vertical-align: baseline;
+}
+
+/* Blog 标题起始处静态渐变点缀 - B字母和l字母部分 */
+.blog-title-glow {
+  background: linear-gradient(
+    135deg,
+    #00C05C 0%,
+    #79F200 20%,
+    transparent 48%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }

@@ -82,7 +82,7 @@ const BlogPost = () => {
           <div className="flex gap-12">
             {/* Vertical decorative line - left side */}
             <div className="hidden lg:block relative w-px shrink-0">
-              <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-white/80 via-white/80 to-transparent" />
+              <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-white/30 via-white/30 to-transparent" />
             </div>
 
             {/* Main content */}
@@ -136,7 +136,7 @@ const BlogPost = () => {
               </div>
 
               {/* Decorative horizontal line */}
-              <div className="mt-5 mb-10 h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+              <div className="mt-5 mb-10 h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
               {/* Cover image */}
               {post.cover_image_url && (
@@ -150,7 +150,7 @@ const BlogPost = () => {
               )}
 
               {/* Content */}
-              <div className="mt-[30px] prose prose-base prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-muted-foreground prose-p:leading-[1.75] prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-[#00C05C]/30 prose-blockquote:py-5 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:text-foreground/90 prose-blockquote:rounded-r-lg [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-[#00C05C]/10 [&_blockquote]:to-[#79F200]/5 prose-code:rounded prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:text-primary prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-strong:text-foreground prose-strong:font-bold prose-em:not-italic prose-em:font-normal prose-em:text-muted-foreground prose-ul:text-muted-foreground prose-ul:my-4 prose-ol:text-muted-foreground prose-ol:my-4 prose-li:marker:text-primary/60 prose-li:my-1.5 prose-img:rounded-xl prose-img:my-8 prose-img:mx-auto [&_strong]:text-foreground [&_strong]:font-bold [&_em]:not-italic [&_em]:font-normal [&_em]:text-muted-foreground">
+              <div className="mt-[30px] prose prose-base prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-muted-foreground prose-p:leading-[1.75] prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-2 prose-blockquote:border-[#00C05C]/30 prose-blockquote:py-5 prose-blockquote:px-6 prose-blockquote:not-italic prose-blockquote:text-foreground/90 prose-blockquote:rounded-r-lg [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-[#00C05C]/10 [&_blockquote]:to-[#79F200]/5 prose-code:rounded prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:text-primary prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-strong:text-foreground prose-strong:font-bold prose-em:not-italic prose-em:font-normal prose-em:text-muted-foreground prose-ul:text-muted-foreground prose-ul:my-4 prose-ol:text-muted-foreground prose-ol:my-4 prose-li:marker:text-primary/60 prose-li:my-1.5 prose-img:rounded-xl prose-img:my-8 prose-img:mx-auto prose-img:max-w-[75%] [&_strong]:text-foreground [&_strong]:font-bold [&_em]:not-italic [&_em]:font-normal [&_em]:text-muted-foreground">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}

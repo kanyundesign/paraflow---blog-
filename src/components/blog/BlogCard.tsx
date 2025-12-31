@@ -33,13 +33,13 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
   return (
     <Link
       to={`/blog/${post.slug}`}
-      className="group relative block h-[420px] animate-fade-in overflow-hidden rounded-2xl"
+      className="group relative block h-[360px] animate-fade-in overflow-hidden rounded-2xl"
       style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
     >
       {/* Main Card */}
-      <div className="relative h-full overflow-hidden rounded-2xl bg-black border border-white/80 transition-all duration-300">
-        {/* Cover Image */}
-        <div className="relative h-60 w-full overflow-hidden bg-[#1A1A1A]">
+      <div className="relative h-full overflow-hidden rounded-2xl bg-black border border-white/30 transition-all duration-300">
+        {/* Cover Image - Golden ratio: 62% of card height (222px) */}
+        <div className="relative h-[222px] w-full overflow-hidden bg-[#1A1A1A]">
           {coverImage ? (
             <img
               src={coverImage}
@@ -52,13 +52,13 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
             </div>
           )}
           {/* Decorative line at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-white/80" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-white/30" />
         </div>
         
-        {/* Content */}
-        <div className="flex h-[calc(100%-15rem)] flex-col justify-between bg-white p-5">
+        {/* Content - Golden ratio: 38% of card height (138px) */}
+        <div className="flex h-[138px] flex-col justify-between bg-[#F5F5F7] p-4">
           {/* Title */}
-          <h3 className="text-[22px] font-semibold leading-tight text-black line-clamp-3">
+          <h3 className="text-[20px] font-semibold leading-tight text-black line-clamp-2">
             {post.title}
           </h3>
           
@@ -76,15 +76,22 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
       </div>
       
       {/* Hover Overlay Card - slides up from bottom to cover the main card */}
-      <div className="absolute inset-0 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-[#00C05C] to-[#79F200] p-8 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
-        <p className="text-[26px] font-semibold leading-[1.3] text-left text-paraflow-black line-clamp-7">
+      <div 
+        className="absolute inset-0 flex flex-col justify-between rounded-2xl p-6 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
+        style={{
+          background: 'linear-gradient(135deg, #00C05C 0%, #79F200 100%)',
+          backgroundSize: '130% 130%',
+          backgroundPosition: 'top left',
+        }}
+      >
+        <p className="text-[22px] font-semibold leading-[1.3] text-left text-paraflow-black line-clamp-6">
           {post.subtitle || defaultSubtitles[index % defaultSubtitles.length]}
         </p>
         {/* Jump icon at bottom right */}
         <div className="flex justify-end">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/10 transition-all duration-200 group-hover:scale-110 group-active:scale-95">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/10 transition-all duration-200 group-hover:scale-110 group-active:scale-95">
             <svg 
-              className="h-7 w-7 text-paraflow-black transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
+              className="h-6 w-6 text-paraflow-black transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 

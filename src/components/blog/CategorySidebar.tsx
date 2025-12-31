@@ -45,9 +45,9 @@ const CategorySidebar = () => {
         {/* Decorative Line between Categories and Share */}
         <div className="relative !mt-[30px] w-[calc(100%+49px)]">
           {/* Line with left gradient fade */}
-          <div className="h-px w-full bg-gradient-to-r from-transparent to-white/80" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent to-white/30" />
           {/* Square endpoint at right intersection */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 h-2 w-2 border border-white/80 bg-black" />
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 h-2 w-2 border border-white/30 bg-black" />
         </div>
 
         {/* Share Links */}

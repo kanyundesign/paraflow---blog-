@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        // 展示字体 - 用于大标题 (衬线体)
-        display: ["Newsreader", "Georgia", "'Times New Roman'", "serif"],
+        // 展示字体 - 用于大标题 (Parkinsans)
+        display: ["Parkinsans", "system-ui", "-apple-system", "sans-serif"],
         // 正文字体 - 用于正文、按钮、标签 (无衬线体)
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
       },

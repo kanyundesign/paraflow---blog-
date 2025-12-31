@@ -51,27 +51,35 @@ const Blog = () => {
         />
       </Helmet>
 
-      <div className="container mx-auto max-w-7xl px-6 py-16">
+      <div className="container mx-auto max-w-7xl px-6 pt-[44px] pb-16">
         {/* Page Header - Diagonal Layout */}
-        <header className="mb-12">
+        <header className="mb-[28px]">
           {/* Decorative line above title */}
-          <div className="mb-8 h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+          <div className="mb-[12px] h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-y-[20px]" />
           
           <div className="flex items-end justify-between">
             {/* Left: Large Blog title with mouse follow effect */}
             <h1 
               ref={titleRef}
               onMouseMove={handleMouseMove}
-              className="font-display text-[64px] font-medium leading-none tracking-tight cursor-default md:text-[90px] lg:text-[120px] relative"
+              className="font-display text-[64px] font-medium leading-none tracking-tight cursor-default md:text-[90px] lg:text-[120px] relative -translate-y-[20px] z-20"
             >
-              {/* Base white text */}
+              {/* Base white text - always visible */}
               <span className="text-white">Blog</span>
-              {/* Gradient overlay that fades out */}
+              {/* Static gradient - visible when not hovering */}
               <span 
-                className="absolute inset-0 bg-clip-text text-transparent transition-opacity duration-1000 ease-out"
+                className="absolute inset-0 -bottom-8 blog-title-glow text-transparent transition-opacity duration-1000 ease-out"
+                style={{ opacity: showGlow ? 0 : 0.8 }}
+              >
+                Blog
+              </span>
+              {/* Mouse follow gradient overlay - visible when hovering */}
+              <span 
+                className="absolute inset-0 -bottom-8 bg-clip-text text-transparent transition-opacity duration-1000 ease-out"
                 style={{
                   backgroundImage: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, #00C05C 0%, #79F200 30%, transparent 100%)`,
                   opacity: showGlow ? 1 : 0,
+                  WebkitTextFillColor: 'transparent',
                 }}
               >
                 Blog
@@ -79,13 +87,13 @@ const Blog = () => {
             </h1>
             
             {/* Right: Subtitle aligned to bottom */}
-            <p className="translate-y-[10px] text-right text-sm font-light text-gray-400 md:text-base lg:text-lg">
+            <p className="text-right text-sm font-light text-gray-400 md:text-base lg:text-lg">
               Ideas shaping <span className="font-bold">Paraflow</span>
             </p>
           </div>
           
           {/* Decorative line below */}
-          <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+          <div className="mt-[12px] h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </header>
 
         {/* Main Content */}
@@ -96,10 +104,10 @@ const Blog = () => {
           {/* Vertical Decorative Line - extends up to connect with horizontal line */}
           <div className="relative hidden lg:block">
             {/* Vertical line with bottom fade */}
-            <div className="absolute -top-12 bottom-0 w-px bg-gradient-to-b from-white/80 via-white/80 to-transparent" />
+            <div className="absolute -top-[28px] bottom-0 w-px bg-gradient-to-b from-white/30 via-white/30 to-transparent" />
             {/* Square anchor point at intersection - on top of line */}
-            <div className="absolute -top-[49px] left-1/2 z-10 -translate-x-1/2">
-              <div className="h-2 w-2 border border-white/80 bg-black" />
+            <div className="absolute -top-[29px] left-1/2 z-10 -translate-x-1/2">
+              <div className="h-2 w-2 border border-white/30 bg-black" />
             </div>
           </div>
 
