@@ -91,7 +91,7 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
         <div className="flex justify-end">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black/10 transition-all duration-200 group-hover:scale-110 group-active:scale-95">
             <svg 
-              className="h-6 w-6 text-paraflow-black transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
+              className="h-6 w-6 -translate-x-[5px] text-paraflow-black transition-transform duration-200 group-hover:translate-x-0" 
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 
@@ -99,8 +99,8 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
               strokeLinecap="round" 
               strokeLinejoin="round"
             >
-              <path d="M7 17L17 7" />
-              <path d="M7 7h10v10" />
+              <path d="M4 12h16" />
+              <path d="M14 6l6 6-6 6" />
             </svg>
           </div>
         </div>
