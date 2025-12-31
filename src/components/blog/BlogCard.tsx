@@ -56,9 +56,9 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
         </div>
         
         {/* Content - Golden ratio: 38% of card height (138px) */}
-        <div className="flex h-[138px] flex-col justify-between bg-[#F5F5F7] p-4">
+        <div className="flex h-[138px] flex-col justify-between bg-[#1A1A1A] p-4">
           {/* Title */}
-          <h3 className="text-[20px] font-semibold leading-tight text-black line-clamp-2">
+          <h3 className="font-display text-[20px] font-medium leading-tight text-foreground line-clamp-2">
             {post.title}
           </h3>
           
@@ -66,9 +66,10 @@ const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
           <div className="flex items-center justify-between">
             <CategoryTag 
               category={post.category?.slug || 'default'} 
-              label={post.category?.label || 'Article'} 
+              label={post.category?.label || 'Article'}
+              isDark
             />
-            <span className="text-sm font-medium text-gray-500">
+            <span className="text-sm font-medium text-gray-400">
               {formattedDate}
             </span>
           </div>
@@ -117,9 +118,21 @@ const categoryStyles: Record<string, { bg: string; text: string }> = {
   engineering: { bg: "bg-[#FFF3E0]", text: "text-[#E65100]" },  // Soft orange
 };
 
+// Category styles for dark background
+const categoryStylesDark: Record<string, { bg: string; text: string }> = {
+  insight: { bg: "bg-[#1976D2]/20", text: "text-[#64B5F6]" },      // Blue for dark
+  stories: { bg: "bg-[#2E7D32]/20", text: "text-[#81C784]" },      // Green for dark
+  features: { bg: "bg-[#7B1FA2]/20", text: "text-[#CE93D8]" },     // Purple for dark
+  engineering: { bg: "bg-[#E65100]/20", text: "text-[#FFB74D]" },  // Orange for dark
+};
+
 // Category Tag Component with colored background
-const CategoryTag = ({ category, label }: { category: string; label: string }) => {
-  const style = categoryStyles[category] || { bg: "bg-gray-100", text: "text-gray-600" };
+const CategoryTag = ({ category, label, isDark = false }: { category: string; label: string; isDark?: boolean }) => {
+  const styles = isDark ? categoryStylesDark : categoryStyles;
+  const defaultStyle = isDark 
+    ? { bg: "bg-gray-700", text: "text-gray-300" }
+    : { bg: "bg-gray-100", text: "text-gray-600" };
+  const style = styles[category] || defaultStyle;
   
   return (
     <div className={`flex items-center gap-1.5 rounded-full px-3 py-1 ${style.bg}`}>

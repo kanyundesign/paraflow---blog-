@@ -64,8 +64,8 @@ const Blog = () => {
               onMouseMove={handleMouseMove}
               className="font-display text-[64px] font-medium leading-none tracking-tight cursor-default md:text-[90px] lg:text-[120px] relative -translate-y-[20px] z-20"
             >
-              {/* Base white text - always visible */}
-              <span className="text-white">Blog</span>
+              {/* Base text - Apple style soft white */}
+              <span className="text-foreground">Blog</span>
               {/* Static gradient - visible when not hovering */}
               <span 
                 className="absolute inset-0 -bottom-8 blog-title-glow text-transparent transition-opacity duration-1000 ease-out"
@@ -87,7 +87,7 @@ const Blog = () => {
             </h1>
             
             {/* Right: Subtitle aligned to bottom */}
-            <p className="text-right text-sm font-light text-gray-400 md:text-base lg:text-lg">
+            <p className="text-right text-xs font-light text-gray-400 md:text-sm lg:text-sm">
               Ideas shaping <span className="font-bold">Paraflow</span>
             </p>
           </div>
