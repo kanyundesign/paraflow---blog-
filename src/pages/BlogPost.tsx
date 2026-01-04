@@ -87,34 +87,20 @@ const BlogPost = () => {
 
             {/* Main content */}
             <div className="flex-1 max-w-5xl">
-              {/* Category Tag & Breadcrumb - same row */}
-              <div className="mb-6 flex items-center justify-between">
-                {/* Left: Category Tag */}
+              {/* Breadcrumb - above title */}
+              <nav className="mb-4 text-xs">
+                <Link to="/blog" className="text-muted-foreground/60 hover:text-foreground transition-colors">
+                  Blog
+                </Link>
                 {post.category && (
-                  <CategoryTag 
-                    category={post.category.slug} 
-                    label={post.category.label} 
-                  />
+                  <>
+                    <span className="mx-1.5 text-muted-foreground/60">/</span>
+                    <span className="text-foreground font-medium">
+                      {post.category.label}
+                    </span>
+                  </>
                 )}
-                
-                {/* Right: Breadcrumb */}
-                <nav className="text-xs">
-                  <Link to="/blog" className="text-muted-foreground/60 hover:text-foreground transition-colors">
-                    Blog
-                  </Link>
-                  {post.category && (
-                    <>
-                      <span className="mx-1.5 text-muted-foreground/60">/</span>
-                      <Link
-                        to={`/blog/category/${post.category.slug}`}
-                        className="text-foreground font-medium hover:text-[#00C05C] transition-colors"
-                      >
-                        {post.category.label}
-                      </Link>
-                    </>
-                  )}
-                </nav>
-              </div>
+              </nav>
 
               {/* Title */}
               <h1 className="font-display text-[2.5rem] font-medium leading-[1.1] tracking-tight text-foreground md:text-[3rem] lg:text-[3.5rem]">
